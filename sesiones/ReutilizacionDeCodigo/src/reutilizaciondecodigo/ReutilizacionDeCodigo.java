@@ -9,6 +9,8 @@ import ico.fes.componentes.Mouse;
 import ico.fes.componentes.Procesador;
 import ico.fes.equipos.Computadora;
 import ico.fes.herencia.Alumno;
+import ico.fes.herencia.polimorfismo.Animal;
+import ico.fes.herencia.polimorfismo.Perro;
 import ico.fes.iu.MiVentana;
 
 /**
@@ -60,6 +62,15 @@ public class ReutilizacionDeCodigo {
         
         Alumno alu2 = new Alumno("31916981-2", "Derecho", 2, "Diego", 18);
         System.out.println(alu2);
+        
+        System.out.println("---- Polimorfismo ----");
+        Animal animal1 = new Animal(4);
+        Perro animal2 = new Perro("Poddle",4);
+        
+        animal1.hablar();
+        animal2.hablar();
+        animal2.hablar(3);
+        
     }
     
 }
