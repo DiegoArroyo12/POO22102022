@@ -48,6 +48,6 @@ public class Perro {
     }
     
     public static void ladrar(){
-        System.out.println("Wof Wof Wof!!!");
+        System.out.println("TU NO METE CABRA SARABAMVICHE!!!");
     }
 }
