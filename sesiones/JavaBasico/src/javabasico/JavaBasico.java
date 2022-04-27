@@ -4,6 +4,10 @@
  */
 package javabasico;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  *
  * @author diego
@@ -151,6 +155,101 @@ public class JavaBasico {
         for (Perro perro : lista) {
             System.out.println(perro);
         }
+        
+        //ArrayList de la clase Perro
+        ArrayList mascotas = new ArrayList();
+        mascotas.add( new Perro("Poddle",1));
+        mascotas.add( new Perro("Doberman",2));
+        mascotas.add( new Perro("Akita",2));
+        mascotas.add( new Perro("Gran Danes",3));
+        mascotas.add( new Perro("Chihuahua",0));
+        
+        for (Object mascota : mascotas) {
+            Perro tmp = (Perro)mascota;
+            tmp.setTamano(4);
+            System.out.println( tmp );
+        }
+        
+        // Despues de la versión 2 de java se agregó el concepto de clases
+        // genericas
+        
+        System.out.println("----- Con Genérica -----");
+        
+        ArrayList<Perro> mascotas2 = new ArrayList<Perro>();
+        mascotas2.add( new Perro("Poddle",1));
+        mascotas2.add( new Perro("Doberman",2));
+        mascotas2.add( new Perro("Akita",2));
+        mascotas2.add( new Perro("Gran Danes",3));
+        mascotas2.add( new Perro("Chihuahua",0));
+        
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Qué raza quieres cambiar de tamaño???");
+        String raza = "Akita"; // Faltan excepciones
+        
+        System.out.println("------------------");
+        
+        for (Perro perro : mascotas2) {
+            if(perro.getRaza().equals( raza )){
+                perro.setTamano(4);
+            }
+        }
+        
+        for (Perro perro : mascotas2) {
+            System.out.println( perro );
+        }
+        
+        mascotas2.add(2, new Perro("Pug",2));
+        System.out.println("------------------");
+        for (Perro perro : mascotas2) {
+            System.out.println( perro );
+        }
+        
+        System.out.println("-------- GET ----------");
+        
+        System.out.println("Perro 2 es: " + mascotas2.get(2));
+        
+        System.out.println("--------- REMOVE ----------");
+        
+        System.out.println("Eliminar el akita, index 3");
+        System.out.println("------------------");
+        Perro p = mascotas2.remove(3);
+        
+        for (Perro perro : mascotas2) {
+            System.out.println(perro);
+        }
+        System.out.println("------------------");
+        System.out.println("Perro sacado es: " + p);
+        
+        mascotas2.set(1, new Perro("Boxer", 3));
+        mascotas2.set(2, new Perro("Labrador",4));
+        System.out.println("------------------");
+        for (Perro perro : mascotas2) {
+            System.out.println(perro);
+        }
+        
+        // Manejo de excepciones
+        
+        System.out.println("Elige un número entre 0 y 4:");
+        Perro puppy=null;
+        int num = 10;
+        try{
+            int indice = teclado.nextInt();
+            puppy = mascotas2.get(indice);
+            num = num / indice;
+        }catch(IndexOutOfBoundsException ex){
+            System.out.println("Ocurrió un error, el valor debe estar entre 0 y 4");
+            System.out.println( ex.getMessage());
+            puppy = mascotas2.get(0);
+        }catch(InputMismatchException ime){
+            System.out.println("Solo deben ser números");
+            puppy = mascotas2.get(0);
+        }catch(Exception e){
+            System.out.println("Ültimo recurso....");
+        }finally{
+            System.out.println("En finally");
+            System.out.println(puppy);
+        }
+        // ERROR != EXCEPCION
+        System.out.println("Se alcanzó el fin del programa!!");
     }
-    
 }
