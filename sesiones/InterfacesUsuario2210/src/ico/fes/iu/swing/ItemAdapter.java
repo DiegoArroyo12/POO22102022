@@ -4,10 +4,18 @@
  */
 package ico.fes.iu.swing;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 /**
  *
  * @author diego
  */
-public class ItemAdapter {
+public abstract class ItemAdapter implements ItemListener{
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+       
+    }
     
 }
