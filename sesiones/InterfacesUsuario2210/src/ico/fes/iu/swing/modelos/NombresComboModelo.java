@@ -74,5 +74,7 @@ public class NombresComboModelo implements ComboBoxModel<String>{
         return this.selectedItem;
     }
     
-    
+    public void addNombre(String nombre){
+        datos.add(nombre);
+    }
 }
