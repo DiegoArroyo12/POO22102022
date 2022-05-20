@@ -70,5 +70,7 @@ public class ModeloPersonaCombo implements ComboBoxModel<Persona>{
         
     }
     
-    
+    public void agregarPersona( Persona p ){
+        this.data.add(p);
+    }
 }

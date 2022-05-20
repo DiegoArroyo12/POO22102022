@@ -8,6 +8,8 @@ import ico.fes.iu.swing.modelos.ModeloPersonaCombo;
 import ico.fes.iu.swing.modelos.Persona;
 import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -64,6 +67,21 @@ public class VentanaPersona extends JFrame{
             }
         });
         
+        this.btnAgregar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // true -- ok   false ---- alguno de los campos está vacio
+                if (validarFormulario()) {
+                    modelo.agregarPersona(new Persona(txtNombre.getText() , 
+                                                    Integer.parseInt(txtEdad.getText())));
+                lista.repaint();
+                borrarFormulario();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No puedes dejar vacíos los campos", "Error del formulario", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
         this.lista.addItemListener(new ItemAdapter() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -82,5 +100,17 @@ public class VentanaPersona extends JFrame{
         this.lista = lista;
     }
     
+    private void borrarFormulario(){
+        this.txtNombre.setText("");
+        this.txtEdad.setText("");
+    }
+    
+    private boolean validarFormulario(){
+        boolean valido = true;
+        if (txtEdad.getText().equals("") || txtNombre.getText().equals("")) {
+            valido = false;
+        }
+        return valido;
+    }
     
 }
