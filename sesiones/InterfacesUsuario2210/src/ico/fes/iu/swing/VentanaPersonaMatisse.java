@@ -50,6 +50,8 @@ public class VentanaPersonaMatisse extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 153, 255));
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+
         jLabel1.setText("Nombre: ");
 
         jButton1.setText("Agregar");
