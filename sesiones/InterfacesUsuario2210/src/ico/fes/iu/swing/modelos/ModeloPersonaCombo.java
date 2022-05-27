@@ -4,6 +4,7 @@
  */
 package ico.fes.iu.swing.modelos;
 
+import ico.fes.db.PersonaDAO;
 import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.event.ListDataListener;
@@ -71,15 +72,23 @@ public class ModeloPersonaCombo implements ComboBoxModel<Persona>{
     }
     
     public void agregarPersona( Persona p ){
-        this.data.add(p);
-        // También se debería insertar en BD.
+        try {
+            PersonaDAO pdao = new PersonaDAO();
+            if (pdao.insertar(p)) {
+                this.data.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public void cargarDatos(){
-        // Simular conexión a BD
-        this.data = new ArrayList<Persona>();
-        this.data.add(new Persona("Jesús", 33));
-        this.data.add(new Persona("María", 30));
-        this.data.add(new Persona("José", 32));
+        // SELECT * FROM persona;
+        PersonaDAO pdao = new PersonaDAO();
+        try {
+            this.data = pdao.seleccionarTodo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
